@@ -1,6 +1,7 @@
 import { defineConfig } from "vite";
 import { fileURLToPath } from "node:url";
 import { dirname, resolve } from "node:path";
+import { rollupInput } from "../utils";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -18,11 +19,9 @@ export default defineConfig({
     },
   },
   build: {
+    //https://vitejs.cn/vite5-cn/guide/build.html#multi-page-app
     rollupOptions: {
-      input: {
-        page1: resolve(__dirname, "../../src/module/page1/index.html"),
-        page2: resolve(__dirname, "../../src/module/page2/index.html"),
-      },
+      input: rollupInput(),
       output: {
         dir: "dist",
         entryFileNames: (chunkInfo) => {

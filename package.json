@@ -9,7 +9,9 @@
     "commit": "git-cz",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
     "dev": "vite --config scripts/config/vite.config.ts",
-    "build": "vite build",
+    "dev:page1": "vite serve src/module/page1 --config scripts/config/vite.config.ts ",
+    "dev:page2": "vite serve src/module/page2 --config scripts/config/vite.config.ts",
+    "build": "vite build --config scripts/config/vite.config.ts",
     "preview": "vite preview"
   },
   "keywords": [],
