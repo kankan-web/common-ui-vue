@@ -3,11 +3,12 @@ module.exports = {
     // 自动添加浏览器前缀
     autoprefixer: {
       overrideBrowserslist: [
-        "Android 4.1",
-        "iOS 7.1",
-        "Chrome > 31",
-        "ff > 31",
-        "ie >= 8",
+        "Android >= 4.1",
+        "iOS >= 7.1",
+        "Chrome >= 31",
+        "ff >= 31",
+        "ie >= 11",
+        "> 1%",
         "last 2 versions",
       ],
       grid: true,

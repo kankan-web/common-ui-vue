@@ -1,8 +1,11 @@
 import { defineConfig, loadEnv } from "vite";
 import { fileURLToPath } from "node:url";
 import { dirname, resolve } from "node:path";
+import vue from "@vitejs/plugin-vue";
+import vueJsx from "@vitejs/plugin-vue-jsx";
 import { root, pathResolve } from "../utils";
 import autoprefixer from "autoprefixer";
+import legacy from "@vitejs/plugin-legacy";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -19,13 +22,28 @@ export default defineConfig(({ mode }) => {
     resolve: {
       alias: {
         "@": resolve(__dirname, "../../src"),
+        "@assets": resolve(__dirname, "../../src/assets"),
+        "@components": resolve(__dirname, "../../src/components"),
+        "@styles": resolve(__dirname, "../../src/styles"),
       },
     },
+    plugins: [
+      vue(),
+      vueJsx(),
+      legacy({
+        targets: ["ie >= 11", "chrome 52", "Android 4.1", "iOS 7.1"],
+        modernPolyfills: true,
+        additionalLegacyPolyfills: ["regenerator-runtime/runtime"],
+        renderLegacyChunks: true,
+        polyfills: true,
+      }),
+    ],
     // https://vitejs.cn/vite5-cn/config/shared-options.html#envdir
     envDir: resolve(__dirname, "../env"),
     build: {
       // https://cn.vitejs.dev/guide/build.html#browser-compatibility
-      target: "es2015",
+      target: ["es2015", "chrome52"],
+
       sourcemap: false,
       // 消除打包大小超过500kb警告
       // chunkSizeWarningLimit: 4000,
@@ -40,7 +58,15 @@ export default defineConfig(({ mode }) => {
           assetFileNames: "static/[ext]/[name]-[hash].[ext]",
         },
       },
+      minify: "terser",
+      terserOptions: {
+        compress: {
+          drop_console: true,
+          drop_debugger: true,
+        },
+      },
     },
+
     css: {
       // 开启 CSS source maps
       devSourcemap: true,
