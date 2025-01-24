@@ -12,7 +12,8 @@
     "dev:page1": "vite serve src/module/page1 --config scripts/config/vite.config.ts ",
     "dev:page2": "vite serve src/module/page2 --config scripts/config/vite.config.ts",
     "build": "vite build --config scripts/config/vite.config.ts ",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "lint": "eslint --config eslint.config.js"
   },
   "keywords": [],
   "author": "",

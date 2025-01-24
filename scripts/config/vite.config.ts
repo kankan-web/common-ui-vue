@@ -4,7 +4,6 @@ import { dirname, resolve } from "node:path";
 import vue from "@vitejs/plugin-vue";
 import vueJsx from "@vitejs/plugin-vue-jsx";
 import { root, pathResolve } from "../utils";
-import autoprefixer from "autoprefixer";
 import legacy from "@vitejs/plugin-legacy";
 
 const __filename = fileURLToPath(import.meta.url);
@@ -88,22 +87,6 @@ export default defineConfig(({ mode }) => {
             "primary-color": "#1890ff",
           },
         },
-      },
-      // 添加 PostCSS 配置
-      postcss: {
-        plugins: [
-          autoprefixer({
-            overrideBrowserslist: [
-              "Android 4.1",
-              "iOS 7.1",
-              "Chrome > 31",
-              "ff > 31",
-              "ie >= 8",
-              "last 2 versions",
-            ],
-            grid: true,
-          }),
-        ],
       },
 
       // CSS 模块化配置
