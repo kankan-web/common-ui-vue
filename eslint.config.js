@@ -2,7 +2,7 @@ import globals from "globals";
 import pluginJs from "@eslint/js";
 import tseslint from "typescript-eslint";
 import pluginVue from "eslint-plugin-vue";
-import eslintPluginPrettier from "eslint-plugin-prettier";
+// import eslintPluginPrettier from "eslint-plugin-prettier";
 
 /** @type {import('eslint').Linter.Config[]} */
 export default [
@@ -16,5 +16,5 @@ export default [
     languageOptions: { parserOptions: { parser: tseslint.parser } },
   },
   // 添加 Prettier 插件配置
-  eslintPluginPrettier,
+  // eslintPluginPrettier,
 ];
